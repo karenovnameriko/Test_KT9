@@ -6,7 +6,7 @@ TEST_USERNAME = "testuser"
 TEST_PASSWORD = "testpass"
 
 async def ensure_user_exists(client, username, password):
-    """Создаёт пользователя, если его ещё нет"""
+    #Создаёт пользователя, если его ещё нет
     data = {
         "username": username,
         "password": password,
@@ -36,7 +36,8 @@ async def test_register_existing_user():
     assert response.status_code == 400
     assert "detail" in response.json()
     assert response.json()["detail"] == "User already exists"
-
+    
+# Вход с неправильным паролем
 @pytest.mark.asyncio
 async def test_login_wrong_password():
     async with httpx.AsyncClient() as client:
